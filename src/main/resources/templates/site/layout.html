@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title layout:title-pattern="$DECORATOR_TITLE-$CONTENT_TITLE">Moon</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<style th:replace="/site/share/style"></style>
+
+</head>
+<body class="animsition" ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
+
+	<div th:replace="/site/share/header"></div>
+	
+	<div layout:fragment="content"></div>
+	
+	<div th:replace="/site/share/footer"></div>
+	
+	<div th:replace="/site/share/backtotop"></div>
+	
+	<div th:replace="/site/share/script" ></div>
+	
+	<div th:fragment="script"></div>
+	
+	<script src="/js/shopping-cart-app.js"></script>
+	
+</body>
+</html>

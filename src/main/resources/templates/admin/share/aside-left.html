@@ -1,0 +1,87 @@
+
+            <div class="nk-sidebar nk-sidebar-fixed is-light " data-content="sidebarMenu">
+                <div class="nk-sidebar-element nk-sidebar-head">
+                    <div class="nk-sidebar-brand">
+                        <a th:href="@{/admin/admin-page}" class="logo-link nk-sidebar-logo">
+                            <img class="logo-light logo-img" src="/admin/images/logo.png" srcset="/admin//images/logo2x.png 2x" alt="logo">
+                            <img class="logo-dark logo-img" src="/admin//images/logo-dark.png" srcset="/admin//images/logo-dark2x.png 2x" alt="logo-dark">
+                            <img class="logo-small logo-img logo-img-small" src="/admin//images/logo-small.png" srcset="/admin//images/logo-small2x.png 2x" alt="logo-small">
+                        </a>
+                    </div>
+                    <div class="nk-menu-trigger mr-n2">
+                        <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em class="icon ni ni-arrow-left"></em></a>
+                        <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+                    </div>
+                </div><!-- .nk-sidebar-element -->
+                <div class="nk-sidebar-element">
+                    <div class="nk-sidebar-content">
+                        <div class="nk-sidebar-menu" data-simplebar>
+                            <ul class="nk-menu">
+                                <li class="nk-menu-item">
+                                    <a href="/admin/dashboard" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-dashboard-fill"></em></span>
+                                        <span class="nk-menu-text">Dashboard</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="/admin/order" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
+                                        <span class="nk-menu-text">Đơn hàng</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="/admin/product" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-package-fill"></em></span>
+                                        <span class="nk-menu-text">Sản phẩm</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="customer" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-users-fill"></em></span>
+                                        <span class="nk-menu-text">Khách hàng</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="/admin/category" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-layers-fill"></em></span>
+                                        <span class="nk-menu-text">Loại sản phẩm</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+                                <li class="nk-menu-item has-sub">
+                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-cc-alt2-fill"></em></span>
+                                        <span class="nk-menu-text">Thống kê</span>
+                                    </a>
+                                    <ul class="nk-menu-sub">
+                                        <li class="nk-menu-item">
+                                            <a th:href="@{/admin/inventory}" class="nk-menu-link"><span class="nk-menu-text">Thống kê hàng tồn kho</span></a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a th:href="@{/admin/revenue/category}" class="nk-menu-link"><span class="nk-menu-text">Doanh thu theo loại</span></a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a th:href="@{/admin/revenue/customer}" class="nk-menu-link"><span class="nk-menu-text">Doanh thu theo khách hàng</span></a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a th:href="@{/admin/revenue/month}" class="nk-menu-link"><span class="nk-menu-text">Doanh thu theo tháng</span></a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a th:href="@{/admin/revenue/year}" class="nk-menu-link"><span class="nk-menu-text">Doanh thu theo năm</span></a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a th:href="@{/admin/revenue/quater}" class="nk-menu-link"><span class="nk-menu-text">Doanh thu theo quý</span></a>
+                                        </li>
+                                    </ul><!-- .nk-menu-sub -->
+                                </li><!-- .nk-menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="/admin/setting" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-opt-alt-fill"></em></span>
+                                        <span class="nk-menu-text">Cài đặt</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+                            </ul><!-- .nk-menu -->
+                        </div><!-- .nk-sidebar-menu -->
+                    </div><!-- .nk-sidebar-content -->
+                </div><!-- .nk-sidebar-element -->
+            </div>
+            <!-- sidebar @e -->

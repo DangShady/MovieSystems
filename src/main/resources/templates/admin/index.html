@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout"
+		layout:decorator="/admin/layout-admin">
+<head>
+<meta charset="UTF-8">
+<title>Trang chủ</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="nk-content ">
+                    <div class="container-fluid">
+                        <div class="nk-content-inner">
+                            <div class="nk-content-body">
+                                <div class="nk-block-head nk-block-head-sm">
+                                    <div class="nk-block-between">
+                                        <div class="nk-block-head-content">
+                                            <h4 class="nk-block-title page-title">Dashboard</h4>
+                                        </div><!-- .nk-block-head-content -->
+                                    </div><!-- .nk-block-between -->
+                                </div><!-- .nk-block-head -->
+                                <div class="nk-block">
+                                    <div class="row g-gs">
+                                        <div class="col-xxl-4 col-md-6">
+                                            <div class="card is-dark h-100">
+                                                <div class="nk-ecwg nk-ecwg1">
+                                                    <div class="card-inner">
+                                                        <div class="card-title-group">
+                                                            <div class="card-title">
+                                                                <h6 class="title">Tổng doanh thu</h6>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        <div class="data">
+                                                            <div class="amount" th:text="${#numbers.formatInteger(sales[0],3,'POINT')}+đ">$74,958.49</div>
+                                                            <div class="info"><strong th:text="${#numbers.formatInteger(month[0],3,'POINT')}+đ">$7,395.37</strong> trong tháng này</div>
+                                                        </div>
+                                                        <div class="data">
+                                                            <h6 class="sub-title">Tuần này cho đến nay</h6>
+                                                            <div class="data-group">
+                                                                <div class="amount" th:text="${#numbers.formatInteger(week[0] == null ? 0 : week[0],3,'POINT')}+đ">$1,338.72</div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- .card-inner -->
+                                                    <div class="nk-ecwg1-ck">
+                                                        <canvas class="ecommerce-line-chart-s1" id="totalSales"></canvas>
+                                                    </div>
+                                                </div><!-- .nk-ecwg -->
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+                                        <div class="col-xxl-4 col-md-6">
+                                            <div class="card h-100">
+                                                <div class="nk-ecwg nk-ecwg2">
+                                                    <div class="card-inner">
+                                                        <div class="card-title-group mt-n1">
+                                                            <div class="card-title">
+                                                                <h6 class="title">Đơn hàng trung bình</h6>
+                                                            </div>
+                                                            <div class="card-tools mr-n1">
+                                                                <div class="dropdown">
+                                                                    <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                                                        <ul class="link-list-opt no-bdr">
+                                                                            <li><a href="#" class="active"><span>15 Days</span></a></li>
+                                                                            <li><a href="#"><span>30 Days</span></a></li>
+                                                                            <li><a href="#"><span>3 Months</span></a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="data">
+                                                            <div class="data-group">
+                                                                <div class="amount" th:text="${#numbers.formatInteger(avg[0],3,'POINT')}+đ">$463.35</div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <h6 class="sub-title">Orders over time</h6>
+                                                    </div><!-- .card-inner -->
+                                                    <div class="nk-ecwg2-ck">
+                                                        <canvas class="ecommerce-bar-chart-s1" id="averargeOrder"></canvas>
+                                                    </div>
+                                                </div><!-- .nk-ecwg -->
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+                                        <div class="col-xxl-4">
+                                            <div class="row g-gs">
+                                                <div class="col-xxl-12 col-md-6">
+                                                    <div class="card">
+                                                        <div class="nk-ecwg nk-ecwg3">
+                                                            <div class="card-inner pb-0">
+                                                                <div class="card-title-group">
+                                                                    <div class="card-title">
+                                                                        <h6 class="title">Đơn hàng</h6>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="data">
+                                                                    <div class="data-group">
+                                                                        <div class="amount" th:utext="${orderCount}">329</div>
+                                                                        <!-- <div class="info text-right"><span class="change up text-danger"><em class="icon ni ni-arrow-long-up"></em>4.63%</span><br><span>vs. last week</span></div> -->
+                                                                    </div>
+                                                                </div>
+                                                            </div><!-- .card-inner -->
+                                                            <div class="nk-ecwg3-ck">
+                                                                <canvas class="ecommerce-line-chart-s1" id="totalOrders" th:value="${orderCount}"></canvas>
+                                                            </div>
+                                                        </div><!-- .nk-ecwg -->
+                                                    </div><!-- .card -->
+                                                </div><!-- .col -->
+                                                <div class="col-xxl-12 col-md-6">
+                                                    <div class="card">
+                                                        <div class="nk-ecwg nk-ecwg3">
+                                                            <div class="card-inner pb-0">
+                                                                <div class="card-title-group">
+                                                                    <div class="card-title">
+                                                                        <h6 class="title">Khách hàng</h6>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="data">
+                                                                    <div class="data-group">
+                                                                        <div class="amount" th:utext="${accCount}">194</div>
+                                                                        <!-- <div class="info text-right"><span class="change up text-danger"><em class="icon ni ni-arrow-long-up"></em>4.63%</span><br><span>vs. last week</span></div> -->
+                                                                    </div>
+                                                                </div>
+                                                            </div><!-- .card-inner -->
+                                                            <div class="nk-ecwg3-ck">
+                                                                <canvas class="ecommerce-line-chart-s1" id="totalCustomers"></canvas>
+                                                            </div>
+                                                        </div><!-- .nk-ecwg -->
+                                                    </div><!-- .card -->
+                                                </div><!-- .col -->
+                                            </div><!-- .row -->
+                                        </div><!-- .col -->
+                                        <div class="col-xxl-8">
+                                            <div class="card card-full">
+                                                <div class="card-inner">
+                                                    <div class="card-title-group">
+                                                        <div class="card-title">
+                                                            <h6 class="title">Đơn hàng gần đây</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="nk-tb-list mt-n2">
+                                                    <div class="nk-tb-item nk-tb-head">
+                                                        <div class="nk-tb-col"><span>Order No.</span></div>
+                                                        <div class="nk-tb-col tb-col-sm"><span>Khách hàng</span></div>
+                                                        <div class="nk-tb-col tb-col-md"><span>Ngày mua</span></div>
+                                                        <div class="nk-tb-col"><span>Tổng tiền</span></div>
+                                                        <div class="nk-tb-col"><span class="d-none d-sm-inline">Trạng thái</span></div>
+                                                    </div>
+                                                    <div class="nk-tb-item" th:each="order : ${top8order}">
+                                                        <div class="nk-tb-col">
+                                                            <span class="tb-lead"><a href="#" th:utext="'#'+${order.id}">#95954</a></span>
+                                                        </div>
+                                                        <div class="nk-tb-col tb-col-sm">
+                                                            <div class="user-card">
+                                                                <div class="user-avatar sm bg-purple-dim">
+                                                                    <span>KH</span>
+                                                                </div>
+                                                                <div class="user-name">
+                                                                    <span class="tb-lead" th:utext="${order.fullname}">Abu Bin Ishtiyak</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="nk-tb-col tb-col-md">
+                                                            <span class="tb-sub" th:utext="${order.orderdate}">02/11/2020</span>
+                                                        </div>
+                                                        <div class="nk-tb-col">
+                                                            <span class="tb-sub tb-amount" th:utext="${#numbers.formatInteger(order.amount,3,'POINT')}+đ">4,596.75</span>
+                                                        </div>
+                                                        <div class="nk-tb-col" th:if="${order.status == true}">
+                                                            <span class="badge badge-dot badge-dot-xs badge-success">Đã xác nhận</span>
+                                                        </div>
+                                                        <div class="nk-tb-col" th:unless="${order.status == true}">
+                                                            <span class="badge badge-dot badge-dot-xs badge-warning">Chưa xác nhận</span>
+                                                        </div>
+                                                    </div>
+   
+                                                </div>
+                                            </div><!-- .card -->
+                                        </div>
+                                        <div class="col-xxl-4 col-md-6">
+                                            <div class="card h-100">
+                                                <div class="card-inner">
+                                                    <div class="card-title-group mb-2">
+                                                        <div class="card-title">
+                                                            <h6 class="title">Sản phẩm bán chạy</h6>
+                                                        </div>
+                                                        <div class="card-tools">
+                                                            <div class="dropdown">
+                                                                <a href="#" class="dropdown-toggle link link-light link-sm dropdown-indicator" data-toggle="dropdown">Weekly</a>
+                                                                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                                                    <ul class="link-list-opt no-bdr">
+                                                                        <li><a href="#"><span>Daily</span></a></li>
+                                                                        <li><a href="#" class="active"><span>Weekly</span></a></li>
+                                                                        <li><a href="#"><span>Monthly</span></a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <ul class="nk-top-products">
+                                                        <li class="item" th:each="product : ${topProduct}">
+                                                            <div class="thumb">
+                                                                <img th:src="@{'/images/products/'+${product[0]}+'/'+${product[1]}}" alt="">
+                                                            </div>
+                                                            <div class="info">
+                                                                <div class="title" th:text="${product[0]}">Pink Fitness Tracker</div>
+                                                                <div class="price" th:text="${#numbers.formatInteger(product[2],3,'POINT')}+đ">$99.00</div>
+                                                            </div>
+                                                            <div class="total">
+                                                                <div class="amount" th:text="${#numbers.formatInteger(product[4],3,'POINT')}+đ">$990.00</div>
+                                                                <div class="count" th:text="${product[3]} + ' Đã bán'">10 Sold</div>
+                                                            </div>
+                                                        </li>
+                                                       
+                                                        
+                                                        
+                                                        
+                                                    </ul>
+                                                </div><!-- .card-inner -->
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+                                        <div class="col-xxl-3 col-md-6">
+                                            <div class="card h-100">
+                                                <div class="card-inner">
+                                                    <div class="card-title-group mb-2">
+                                                        <div class="card-title">
+                                                            <h6 class="title">Thông số cửa hàng</h6>
+                                                        </div>
+                                                    </div>
+                                                    <ul class="nk-store-statistics">
+                                                        <li class="item">
+                                                            <div class="info">
+                                                                <div class="title">Đơn hàng</div>
+                                                                <div class="count" th:utext="${orderCount}">1,795</div>
+                                                            </div>
+                                                            <em class="icon bg-primary-dim ni ni-bag"></em>
+                                                        </li>
+                                                        <li class="item">
+                                                            <div class="info">
+                                                                <div class="title">Khách hàng</div>
+                                                                <div class="count" th:utext="${accCount}">2,327</div>
+                                                            </div>
+                                                            <em class="icon bg-info-dim ni ni-users"></em>
+                                                        </li>
+                                                        <li class="item">
+                                                            <div class="info">
+                                                                <div class="title">Sản phẩm</div>
+                                                                <div class="count" th:utext="${proCount}">674</div>
+                                                            </div>
+                                                            <em class="icon bg-pink-dim ni ni-box"></em>
+                                                        </li>
+                                                        <li class="item">
+                                                            <div class="info">
+                                                                <div class="title">Loại sản phẩm</div>
+                                                                <div class="count" th:utext="${cateCount}">68</div>
+                                                            </div>
+                                                            <em class="icon bg-purple-dim ni ni-server"></em>
+                                                        </li>
+                                                    </ul>
+                                                </div><!-- .card-inner -->
+                                            </div><!-- .card -->
+                                        </div><!-- .col -->
+                                    </div><!-- .row -->
+                                </div><!-- .nk-block -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+	</div>
+</body>
+</html>
