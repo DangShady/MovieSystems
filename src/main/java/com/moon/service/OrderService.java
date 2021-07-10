@@ -11,8 +11,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.moon.entity.Order;
+
 @Service
 public interface OrderService {
+
+	Order create(JsonNode orderData);
+
 
 
 }

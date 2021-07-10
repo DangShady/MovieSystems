@@ -32,7 +32,7 @@
 							<div class="text w-100">
 								<h2>Chào mừng bạn đến với trang đăng nhập</h2>
 								<p>Bạn chưa có tài khoản ?</p>
-								<a th:href="@{/mstore/account/register}" class="btn btn-white btn-outline-white">Đăng
+								<a th:href="@{/security/register}" class="btn btn-white btn-outline-white">Đăng
 									ký ngay</a>
 							</div>
 						</div>
@@ -51,31 +51,31 @@
 									</p>
 								</div>
 							</div>
-							<form th:action="@{/mstore/account/login}" method="post" class="signin-form">
+							<form th:action="@{/security/login}" method="post" class="signin-form">
 								<div class="form-group mb-3">
 									<label class="label" for="name">Tên đăng nhập</label> <input
-										type="text" class="form-control" name="username" th:value="${username}" placeholder="Username"
+										 class="form-control" name="username"  placeholder="Username"
 										required>
 								</div>
 								<div class="form-group mb-3">
 									<label class="label" for="password">Mật khẩu</label> <input
-										type="password" class="form-control" name="password" th:value="${password}" placeholder="Password"
+										type="password" class="form-control" name="password" placeholder="Password"
 										required>
 								</div>
 								<div class="form-group">
-									<button type="submit"
-										class="form-control btn btn-primary submit px-3">Đăng nhập</button>
+									<button
+										class="form-control btn btn-primary px-3">Đăng nhập</button>
 									<a th:utext="${message}"></a>	
 								</div>
 								<div class="form-group d-md-flex">
 									<div class="w-50 text-left">
 										<label class="checkbox-wrap checkbox-primary mb-0">Remember
-											Me <input type="checkbox" name="rm"> <span
+											Me <input type="checkbox" name="remember-me"> <span
 											class="checkmark"></span>
 										</label>
 									</div>
 									<div class="w-50 text-md-right">
-										<a th:href="@{/mstore/account/forgot-password}">Quên mật khẩu</a>
+										<a th:href="@{/security/forgot-password}">Quên mật khẩu</a>
 									</div>
 								</div>
 							</form>

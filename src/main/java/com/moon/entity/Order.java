@@ -2,13 +2,16 @@ package com.moon.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +22,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "orders")
-
 public class Order{
 	
 	@Id
@@ -40,6 +42,6 @@ public class Order{
 	Account account;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "order",fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "order")
 	List<OrderDetail> orderDetails;
 }

@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,21 +23,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 @Entity
-@Table(name="Authorities", uniqueConstraints = {
-		@UniqueConstraint(columnNames = {"Username", "Roleid"})
+@Table(name="authorities", uniqueConstraints = {
+		@UniqueConstraint(columnNames = {"Username","Roleid"})
 })
 public class Authority implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	Integer id;
 	
 	@ManyToOne
 	@JoinColumn(name = "Username")
-	private Account authority;
+	Account account;
 	
 	@ManyToOne
 	@JoinColumn(name = "Roleid")
-	private Role role;
+	Role role;
 	
 }

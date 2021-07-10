@@ -1,6 +1,16 @@
 const app = angular.module("shopping-cart-app",[]);
 
 app.controller("shopping-cart-ctrl", function($scope,$http){
+  
+  
+  $scope.userInLogin = {};
+  
+  $http.get(`/rest/accounts/userInLogin`).then(res => {     
+          $scope.userInLogin = res.data;
+          console.log($scope.userInLogin);
+    });
+  
+  
 	$scope.cart = {
 		items: [],
 		//Thêm sản phẩm
@@ -17,6 +27,11 @@ app.controller("shopping-cart-ctrl", function($scope,$http){
 					this.saveToLocalStorage();
 				})
 			}
+		},
+		remove(id){
+			var index = this.items.findIndex(item => item.id == id);
+			this.items.splice(index,1);
+			this.saveToLocalStorage();
 		},
 		// Số lượng trong giỏ hàng
 		get count(){
@@ -39,8 +54,48 @@ app.controller("shopping-cart-ctrl", function($scope,$http){
 		loadFromLocalStorage(){
 			var json = localStorage.getItem("cart");
 			this.items = json ? JSON.parse(json) : [];
-		}	
+		},
+    //Xóa giỏ hàng
+    clear(){
+      this.items = [];
+      this.saveToLocalStorage();
+    }
 	};
 	
 		$scope.cart.loadFromLocalStorage();
+    
+    $scope.order = { 
+        orderdate : new Date(),
+        address: $scope.userInLogin.address,
+        account: {username: $("#username").text()},
+        fullname: $scope.userInLogin.fullname,
+        phone : $scope.userInLogin.phone,
+        amount: $scope.cart.amount,
+        description: "",
+        status: true,
+        get orderDetails(){
+          return $scope.cart.items.map(item =>{
+            return {
+              product: {id: item.id},
+              price: item.price,
+              quantity: item.qty
+            }
+          });
+          
+        },
+        purchase(){
+          var order = angular.copy(this);
+          //Thực hiện đặt hàng
+          $http.post("/rest/orders",order).then(res =>{
+              alert("Đặt hàng thành công");
+              $scope.cart.clear();
+              
+              location.href="/home";
+              
+          }).catch(error =>{
+            alert("Đặt hàng thất bại");
+            console.log(error);
+          })
+        }
+    }
 });

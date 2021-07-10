@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 @Entity
-@Table(name = "roles")
+@Table(name = "Roles")
 public class Role implements Serializable{
 	
 	
@@ -32,6 +32,6 @@ public class Role implements Serializable{
 	private String name;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "role",fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "role")
 	List<Authority> accountRoles;
 }

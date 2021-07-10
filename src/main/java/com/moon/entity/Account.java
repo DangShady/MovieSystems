@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -33,13 +35,14 @@ public class Account{
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="dd/MM/YYYY")
 	Date dateregister;
-	Boolean activated;
-	Boolean admin;
 	
-	@OneToMany(mappedBy = "account",fetch = FetchType.EAGER)
+	@JsonIgnore
+	@OneToMany(mappedBy = "account")
 	List<Order> orders;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "authority")
+	@OneToMany(mappedBy = "account",fetch = FetchType.EAGER)
+//	@Fetch(value = FetchMode.SUBSELECT)
 	List<Authority> accountRoles;
+	
 }

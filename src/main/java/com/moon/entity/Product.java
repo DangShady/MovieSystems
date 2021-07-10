@@ -43,6 +43,6 @@ public class Product{
 	String description;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "product",fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "product")
 	List<OrderDetail> orderdetails;
 }

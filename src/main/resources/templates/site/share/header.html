@@ -14,11 +14,11 @@
 							Help & FAQs
 						</a>
 
-						<a th:href="@{/mstore/account/login}"  class="flex-c-m trans-04 p-lr-25">
+						<a th:href="@{/security/login/form}" th:unless="${#request.remoteUser}"  class="flex-c-m trans-04 p-lr-25">
 							My Account
 						</a>
-						<a th:href="@{/mstore/account/profile}"  class="flex-c-m trans-04 p-lr-25">
-							Account login
+						<a th:href="@{/account/profile}" th:if="${#request.remoteUser}" class="flex-c-m trans-04 p-lr-25">
+							Xin chào {{userInLogin.fullname}}
 						</a>
 
 						<a href="#" class="flex-c-m trans-04 p-lr-25">
@@ -29,7 +29,7 @@
 							EN
 						</a>
 						
-						<a th:href="@{/mstore/account/logoff}"  class="flex-c-m trans-04 p-lr-25">
+						<a th:href="@{/security/logoff}" th:if="${#request.remoteUser}" class="flex-c-m trans-04 p-lr-25">
 							Đăng xuất
 						</a>
 					</div>
@@ -51,10 +51,28 @@
 								<a th:href="@{/home}">Trang chủ</a>
 							</li>
 							<li class="active-menu">
-								<a th:href="@{/mstore/product/shirt}">Loại sản phẩm</a>
+								<a>Loại sản phẩm</a>
 								<ul class="sub-menu" >
 									<li th:each="cate : ${cates}">
 									<a th:href="@{|/product/list?id=${cate.id}|}" th:utext="${cate.name}" th:value="${cate.id}"></a>
+									</li>
+									
+								</ul>
+							</li>
+							<li class="menu" th:if="${#request.remoteUser}">
+								<a>Chức năng</a>
+								<ul class="sub-menu" >
+									<li th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('GUEST')}">
+										<a href="">Trang quản trị</a>
+									</li>
+									<li>
+										<a href="">Giỏ hàng</a>
+									</li>
+									<li>
+										<a href="">Thông tin</a>
+									</li>
+									<li>
+										<a href="">Đổi mật khẩu</a>
 									</li>
 									
 								</ul>
@@ -218,7 +236,7 @@
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
 					<li class="header-cart-item flex-w flex-t m-b-12" ng-repeat="product in cart.items" ng-if="cart.count > 0">
-						<div class="header-cart-item-img">
+						<div class="header-cart-item-img" ng-click="cart.remove(product.id)">
 							<img src="/images/products/{{product.name}}/{{product.image}}"  alt="IMG">
 							
 						</div>
@@ -244,12 +262,12 @@
 					 	Tổng tiền: {{cart.amount | number : 0}}đ
 					</div>
 
-					<div class="header-cart-buttons flex-w w-full" >
-						<a th:href="@{/shoping-cart-view}" ng-if="cart.count > 0"  class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+					<div class="header-cart-buttons flex-w w-full" ng-if="cart.count > 0">
+						<a th:href="@{/shoping-cart-view}" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
 							Xem chi tiết
 						</a>
 
-						<a th:href="@{/shoping-cart-view}" ng-if="cart.count > 0" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+						<a th:href="@{/shoping-cart-view}"class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
 							Thanh toán
 						</a>
 					</div>
