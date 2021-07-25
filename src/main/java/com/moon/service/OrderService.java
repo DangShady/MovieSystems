@@ -19,6 +19,10 @@ public interface OrderService {
 
 	Order create(JsonNode orderData);
 
+	Order findById(int id);
+
+	List<Order> findByUserName(String username);
+
 
 
 }

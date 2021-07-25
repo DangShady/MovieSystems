@@ -18,6 +18,16 @@ public interface ProductService {
 	List<Product> findByCategoryId(int id);
 
 	Product findByProductId(int id);
+
+	List<Product> findAll();
+
+	Product findOneProduct(int id);
+
+	Product create(Product product);
+
+	Product update(Product product);
+
+	void delete(Integer id);
 	
 	
 }

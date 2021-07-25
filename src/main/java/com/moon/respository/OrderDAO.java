@@ -15,6 +15,9 @@ import com.moon.entity.Order;
 
 @Repository
 public interface OrderDAO extends JpaRepository<Order, Integer>{
-	
 
+	
+	@Query("SELECT o FROM Order o WHERE o.account.username = ?1 ORDER BY o.id DESC")
+	List<Order> findByUserName(String username);
+	
 }

@@ -15,5 +15,8 @@ import com.moon.entity.Category;
 @Repository
 public interface CategoryDAO extends JpaRepository<Category, Integer>{
 
+	@Query("SELECT c FROM Category c ORDER BY c.id DESC")
+	List<Category> findAllOrderById();
+
 	
 }

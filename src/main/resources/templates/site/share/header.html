@@ -63,16 +63,16 @@
 								<a>Chức năng</a>
 								<ul class="sub-menu" >
 									<li th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('GUEST')}">
-										<a href="">Trang quản trị</a>
+										<a th:href="@{/admin}">Trang quản trị</a>
 									</li>
 									<li>
-										<a href="">Giỏ hàng</a>
+										<a href="/order/list">Lịch sử mua hàng</a>
 									</li>
 									<li>
-										<a href="">Thông tin</a>
+										<a href="/account/profile">Thông tin</a>
 									</li>
 									<li>
-										<a href="">Đổi mật khẩu</a>
+										<a href="/account/change-password">Đổi mật khẩu</a>
 									</li>
 									
 								</ul>

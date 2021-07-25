@@ -66,10 +66,10 @@ app.controller("shopping-cart-ctrl", function($scope,$http){
     
     $scope.order = { 
         orderdate : new Date(),
-        address: $scope.userInLogin.address,
+        address: $scope.address,
         account: {username: $("#username").text()},
-        fullname: $scope.userInLogin.fullname,
-        phone : $scope.userInLogin.phone,
+        fullname: $scope.fullname,
+        phone : $scope.phone,
         amount: $scope.cart.amount,
         description: "",
         status: true,
@@ -90,11 +90,11 @@ app.controller("shopping-cart-ctrl", function($scope,$http){
               alert("Đặt hàng thành công");
               $scope.cart.clear();
               
-              location.href="/home";
+              location.href="/thank-buy";
               
           }).catch(error =>{
             alert("Đặt hàng thất bại");
-            console.log(error);
+            console.log(this);
           })
         }
     }

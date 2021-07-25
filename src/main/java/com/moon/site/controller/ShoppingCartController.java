@@ -12,4 +12,9 @@ public class ShoppingCartController {
 		return "/site/products/shopping-cart";
 	}
 	
+	@GetMapping("/thank-buy")
+	public String thank() {
+		return "/site/products/thank-buy";
+	}
+	
 }

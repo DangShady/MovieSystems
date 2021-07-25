@@ -17,6 +17,9 @@ public interface ProductDAO extends JpaRepository<Product, Integer>{
 
 	@Query("SELECT p FROM Product p WHERE p.category.id =?1")
 	List<Product> findByCategoryId(int id);
+
+	@Query("SELECT p FROM Product p ORDER BY p.id DESC")
+	List<Product> findAllByProductDate();
 	
 	
 }

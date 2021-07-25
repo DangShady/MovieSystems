@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import com.moon.entity.Category;
+import com.moon.entity.Product;
 import com.moon.respository.CategoryDAO;
 import com.moon.service.CategoryService;
 
@@ -24,7 +25,24 @@ public class CategoryServiceImpl implements CategoryService{
 	@Override
 	public List<Category> findAll() {
 		// TODO Auto-generated method stub
-		return cateDao.findAll();
+		return cateDao.findAllOrderById();
+	}
+
+	@Override
+	public Category create(Category category) {
+		
+		return cateDao.save(category);
+	}
+
+	@Override
+	public Category update(Category category) {
+		return cateDao.save(category);
+	}
+
+	@Override
+	public Category getCateByUpdate(Integer id) {
+		
+		return cateDao.findById(id).get();
 	}
 	
 }

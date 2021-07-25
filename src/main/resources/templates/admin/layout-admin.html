@@ -7,8 +7,10 @@
 
 <title layout:title-pattern="$DECORATOR_TITLE-$CONTENT_TITLE">Admin</title>
 <style th:replace="/admin/share/style"></style>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
 </head>
-<body class="nk-body bg-lighter npc-general has-sidebar ">
+<body class="nk-body bg-lighter npc-general has-sidebar">
 	<div class="nk-app-root">
 		<div class="nk-main ">
 			
@@ -31,5 +33,6 @@
 	<div th:replace="/admin/share/script"></div>
 
 	<div th:fragment="script"></div>
+	
 </body>
 </html>

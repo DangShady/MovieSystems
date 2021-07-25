@@ -47,4 +47,18 @@ public class OrderServiceImpl implements OrderService{
 		
 	}
 
+
+	@Override
+	public Order findById(int id) {
+		// TODO Auto-generated method stub
+		return orderDao.findById(id).get();
+	}
+
+
+	@Override
+	public List<Order> findByUserName(String username) {
+		// TODO Auto-generated method stub
+		return orderDao.findByUserName(username);
+	}
+
 }
