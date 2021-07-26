@@ -35,9 +35,21 @@ app.config(function ($locationProvider,$routeProvider,$qProvider){
     templateUrl: "/admin/assets/customers/customer.html",
     controller: "customer-ctrl"
   })
+  .when("/customer/:username", {
+    templateUrl: "/admin/assets/customers/customer-detail.html",
+    controller: "customer-detail-ctrl"
+  })
+  .when("/add-customer", {
+    templateUrl: "/admin/assets/customers/add-customer.html",
+    controller: "customer-add-ctrl"
+  })
   .when("/order", {
     templateUrl: "/admin/assets/orders/orders.html",
     controller: "order-ctrl"
+  })
+  .when("/order/:orderId", {
+    templateUrl: "/admin/assets/orders/order-detail.html",
+    controller: "order-detail-ctrl"
   })
   .otherwise({
     redirectTo: "/home"

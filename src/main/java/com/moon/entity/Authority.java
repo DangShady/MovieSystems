@@ -3,6 +3,7 @@ package com.moon.entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,8 +17,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-@SuppressWarnings("serial")
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -36,8 +38,8 @@ public class Authority implements Serializable{
 	@JoinColumn(name = "Username")
 	Account account;
 	
-	@ManyToOne
-	@JoinColumn(name = "Roleid")
-	Role role;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "Roleid")
+	Role role;	
 }

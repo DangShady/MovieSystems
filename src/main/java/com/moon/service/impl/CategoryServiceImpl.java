@@ -44,5 +44,12 @@ public class CategoryServiceImpl implements CategoryService{
 		
 		return cateDao.findById(id).get();
 	}
+
+	@Override
+	public void delete(Integer id) {
+		
+		cateDao.deleteById(id);
+		
+	}
 	
 }

@@ -13,15 +13,18 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.moon.entity.Order;
+import com.moon.entity.OrderDetail;
 
 @Service
 public interface OrderService {
 
 	Order create(JsonNode orderData);
 
-	Order findById(int id);
+	List<OrderDetail> findById(int id);
 
 	List<Order> findByUserName(String username);
+
+	List<Order> getAll();
 
 
 

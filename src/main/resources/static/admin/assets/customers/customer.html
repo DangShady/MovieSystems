@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-		xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout"
-		layout:decorator="/admin/layout-admin">
-<head>
-<meta charset="UTF-8">
-<title>Customer</title>
-</head>
-<body>
-	<div class="nk-content" layout:fragment="content">
+
                     <div class="container-fluid">
                         <div class="nk-content-inner">
                             <div class="nk-content-body">
@@ -26,8 +17,8 @@
                                                                 <div class="form-icon form-icon-right">
                                                                     <em class="icon ni ni-search"></em>
                                                                 </div>
-                                                                <form th:action="@{/admin/customer/page/1}">
-                                                                	<input type="text" class="form-control" id="default-04" name="keyword" th:value="${keyword}" onchange="this.form.submit()" placeholder="Tìm kiếm">
+                                                                <form >
+                                                                	<input type="text" class="form-control" id="default-04" ng-model="search" name="keyword" placeholder="Tìm kiếm">
                                                                 </form>
                                                             </div>
                                                         </li>
@@ -37,8 +28,8 @@
                                                                 <a href="#" class="dropdown-toggle dropdown-indicator btn btn-outline-light btn-white" data-toggle="dropdown">Bộ lọc</a>
                                                                 <div class="dropdown-menu dropdown-menu-right">
                                                                     <ul class="link-list-opt no-bdr">
-                                                                        <li><a th:href="@{/admin/customer/page/1?show=admin}"><span>Quản trị viên</span></a></li>
-                                                                        <li><a th:href="@{/admin/customer}"><span>Khách hàng</span></a></li>
+                                                                        <li><a ><span>Quản trị viên</span></a></li>
+                                                                        <li><a ><span>Khách hàng</span></a></li>
                                                                         <!-- <li><a href="#"><span>Chưa kích hoạt</span></a></li> -->
                                                                     </ul>
                                                                 </div>
@@ -46,8 +37,8 @@
                                                           
                                                         </li>
                                                         <li class="nk-block-tools-opt">
-                                                            <a href="#" class="btn btn-icon btn-primary d-md-none"><em class="icon ni ni-plus"></em></a>
-                                                            <a th:href="@{/admin/add-admin}" class="btn btn-primary d-none d-md-inline-flex"><em class="icon ni ni-plus"></em><span>Thêm quản trị viên</span></a>
+                                                            <a href="" class="btn btn-icon btn-primary d-md-none"><em class="icon ni ni-plus"></em></a>
+                                                            <a ng-href="#!add-customer" class="btn btn-primary d-none d-md-inline-flex"><em class="icon ni ni-plus"></em><span>Thêm quản trị viên</span></a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -65,7 +56,7 @@
                                                 </div>
                                             </div>
                                             <div class="nk-tb-col"><span class="sub-text">Tên khách hàng</span></div>
-                                            <div class="nk-tb-col tb-col-mb"><span class="sub-text">Ordered</span></div>
+                                            <div class="nk-tb-col tb-col-mb"><span class="sub-text">Email</span></div>
                                             <div class="nk-tb-col tb-col-md"><span class="sub-text">Số điện thoại</span></div>
                                             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Địa chỉ</span></div>
                                             <div class="nk-tb-col tb-col-lg"><span class="sub-text">Ngày đăng kí</span></div>
@@ -88,7 +79,7 @@
                                                 </ul>
                                             </div>
                                         </div><!-- .nk-tb-item -->
-                                        <div class="nk-tb-item" th:each="customer : ${customers}">
+                                        <div class="nk-tb-item" dir-paginate="customer in customers|filter:search|itemsPerPage:2">
                                             <div class="nk-tb-col nk-tb-col-check">
                                                 <div class="custom-control custom-control-sm custom-checkbox notext">
                                                     <input type="checkbox" class="custom-control-input" id="uid1">
@@ -99,32 +90,32 @@
                                                 <a href="html/ecommerce/customer-details.html">
                                                     <div class="user-card">
                                                         <div class="user-avatar bg-primary">
-                                                            <span th:utext="${customer.username}"></span>
+                                                            <span >{{customer.username}}</span>
                                                         </div>
                                                         <div class="user-info">
-                                                            <span class="tb-lead" th:utext="${customer.fullname}">Abu Bin Ishtiyak <span class="dot dot-success d-md-none ml-1"></span></span>
+                                                            <span class="tb-lead">{{customer.fullname}} <span class="dot dot-success d-md-none ml-1"></span></span>
                                                             
                                                         </div>
                                                     </div>
                                                 </a>
                                             </div>
                                             <div class="nk-tb-col tb-col-mb">
-                                                <span th:utext="${customer.email}">info@softnio.com</span>
+                                                <span >{{customer.email}}</span>
                                             </div>
                                            
                                             <div class="nk-tb-col tb-col-md">
-                                                <span th:text="${customer.phone}">+811 847-4958</span>
+                                                <span >{{customer.phone}}</span>
                                             </div>
                                             <div class="nk-tb-col tb-col-lg">
-                                                <span th:text="${customer.address}">United State</span>
+                                                <span >{{customer.address}}</span>
                                             </div>
                                             <div class="nk-tb-col tb-col-lg">
-                                                <span th:text="${customer.dateregister}">10 Feb 2020</span>
+                                                <span th:text="${customer.dateregister}">{{customer.dateregister | date : 'MM/dd/yyyy'}}</span>
                                             </div>
-                                            <div class="nk-tb-col tb-col-md" th:if="${customer.activated == true}">
+                                            <div class="nk-tb-col tb-col-md" ng-If="customer.activated === true">
                                                 <span class="tb-status text-success">Đã kích hoạt</span>
                                             </div>
-                                            <div class="nk-tb-col tb-col-md" th:unless="${customer.activated == true}">
+                                            <div class="nk-tb-col tb-col-md" ng-If="customer.activated === false">
                                                 <span class="tb-status text-danger">Chưa kích hoạt</span>
                                             </div>
                                             <div class="nk-tb-col nk-tb-col-tools">
@@ -141,10 +132,10 @@
                                                     </li>
                                                     <li>
                                                         <div class="drodown">
-                                                            <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                            <a href="" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                                                             <div class="dropdown-menu dropdown-menu-right">
                                                                 <ul class="link-list-opt no-bdr">
-                                                                    <li><a th:href="@{/admin/customer-detail/{username}(username=${customer.username})}"><em class="icon ni ni-eye"></em><span>Xem chi tiết</span></a></li>
+                                                                    <li><a ng-href="#!customer/{{customer.username}}"><em class="icon ni ni-eye"></em><span>Xem chi tiết</span></a></li>
                                                                     <li><a href="add-order"><em class="icon ni ni-repeat"></em><span>Tạo order mới</span></a></li>
                                                                     <li th:if="${customer.admin == true && customer.username != session.ADMININJD.getUsername() }"><a th:href="@{/admin/customer/delete/{username}(username=${customer.username})}"><em class="icon ni ni-na"></em><span>Xóa người dùng</span></a></li>
                                                                 </ul>
@@ -161,30 +152,12 @@
                                         <div class="card-inner">
                                             <div class="nk-block-between-md g-3">
                                                 <div class="g">
-                                                    <ul class="pagination justify-content-center justify-content-md-start">
-                                                        <li  class="page-item" >
-                                                        	<a class="page-link" th:if="${currentPage > 1}" th:href="@{'/admin/customer/page/' + ${currentPage -1}+${keyword != null ? '?keyword=' + keyword : ''}}">
-                                                        		<em class="icon ni ni-chevrons-left"></em>
-                                                       		</a>
-                                                       		<a class="page-link" th:unless="${currentPage > 1}" hidden="hidden">
-                                                        		<em class="icon ni ni-chevrons-left"></em>
-                                                       		</a>
-                                                        </li>
-                                                        
-                                                        <li  th:each="i: ${#numbers.sequence(1, totalPages)}" th:class="${i == currentPage ? 'page-item active' : 'page-item'}">
-                                                        	<a class="page-link" th:href="@{'/admin/customer/page/' + ${i}+${keyword != null ? '?keyword=' + keyword : ''}}">[[${i}]]</a>
-                                                        	
-                                                        </li>
-                                               
-                                                        <li  class="page-item" >
-                                                        	<a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/admin/customer/page/' + ${currentPage +1}+${keyword != null ? '?keyword=' + keyword : ''}}">
-                                                        		<em class="icon ni ni-chevrons-right"></em>
-                                                       		</a>
-                                                       		<a class="page-link" th:unless="${currentPage < totalPages}" hidden="hidden">
-                                                        		<em class="icon ni ni-chevrons-right"></em>
-                                                       		</a>
-                                                        </li>
-                                                    </ul><!-- .pagination -->  
+                                                    <dir-pagination-controls
+                                                    	max-size="6"
+                                                    	direction-links="true"
+                                                    	boundary-links="true"
+                                                    >
+                                                    </dir-pagination-controls>
                                                 </div>
                                                 <div class="g">
                                                     <div class="pagination-goto d-flex justify-content-center justify-content-md-start gx-3">
@@ -222,6 +195,3 @@
                             </div>
                         </div>
                     </div>
-                </div>
-</body>
-</html>

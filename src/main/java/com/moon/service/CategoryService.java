@@ -22,4 +22,6 @@ public interface CategoryService{
 	Category update(Category product);
 
 	Category getCateByUpdate(Integer id);
+
+	void delete(Integer id);
 }

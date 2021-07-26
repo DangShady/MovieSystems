@@ -14,6 +14,9 @@ import com.moon.entity.Role;
 
 @Repository
 public interface RoleDAO extends JpaRepository<Role, String>{
+
+	
+	public Role findRoleByName(String name);
 	
 	
 }

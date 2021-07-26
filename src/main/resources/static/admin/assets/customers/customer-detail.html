@@ -1,24 +1,13 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-		xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout"
-		layout:decorator="/admin/layout-admin">
-<head>
-<meta charset="UTF-8">
-<title>Chi tiết người dùng</title>
-</head>
-<body>
-	<div class="nk-content " layout:fragment="content">
+
                     <div class="container-fluid">
                         <div class="nk-content-inner">
                             <div class="nk-content-body">
                                 <div class="nk-block-head nk-block-head-sm">
                                     <div class="nk-block-between g-3">
-                                        <div class="nk-block-head-content" th:if="${account.admin == false}">
-                                            <h3 class="nk-block-title page-title">Khách hàng / <strong class="text-primary small" th:utext="${account.fullname}">Abu Bin Ishtiyak</strong></h3>
+                                        <div class="nk-block-head-content" >
+                                            <h3 class="nk-block-title page-title">Người dùng / <strong class="text-primary small" >{{customer.fullname}}</strong></h3>
                                         </div>
-                                         <div class="nk-block-head-content" th:unless="${account.admin == false}">
-                                            <h3 class="nk-block-title page-title">Quản trị viên / <strong class="text-primary small" th:utext="${account.fullname}">Abu Bin Ishtiyak</strong></h3>
-                                        </div>
+                                         
                                         <div class="nk-block-head-content">
                                             <a th:href="@{/admin/customer}" class="btn btn-outline-light bg-white d-none d-sm-inline-flex"><em class="icon ni ni-arrow-left"></em><span>Back</span></a>
                                             <a th:href="@{/admin/customer}" class="btn btn-icon btn-outline-light bg-white d-inline-flex d-sm-none"><em class="icon ni ni-arrow-left"></em></a>
@@ -36,20 +25,17 @@
                                                 </ul><!-- .nav-tabs -->
                                                 <div class="card-inner">
                                                     <div class="nk-block">
-                                                        <div class="nk-block-head" th:if="${account.admin == false}">
-                                                            <h5 class="title">Thông tin khách hàng</h5>
+                                                        <div class="nk-block-head">
+                                                            <h5 class="title">Thông tin người dùng</h5>
                                                             <p>Thông tin cơ bản của khách hàng, dùng để liên hệ nếu cần thiết</p>
                                                         </div><!-- .nk-block-head -->
-                                                        <div class="nk-block-head" th:unless="${account.admin == false}">
-                                                            <h5 class="title">Thông tin quản trị viên</h5>
-                                                            <p>Thông tin cơ bản của quản trị viên, dùng để liên hệ nếu cần thiết</p>
-                                                        </div><!-- .nk-block-head -->
+                                                       
                                                         <div class="profile-ud-list">
                                   
                                                             <div class="profile-ud-item">
                                                                 <div class="profile-ud wider">
                                                                     <span class="profile-ud-label">Họ và tên</span>
-                                                                    <span class="profile-ud-value" th:utext="${account.fullname}">Abu Bin Ishtiyak</span>
+                                                                    <span class="profile-ud-value" >{{customer.fullname}}</span>
                                                                 </div>
                                                             </div>
                                                             
@@ -57,13 +43,13 @@
                                                             <div class="profile-ud-item">
                                                                 <div class="profile-ud wider">
                                                                     <span class="profile-ud-label">Số điện thoại</span>
-                                                                    <span class="profile-ud-value" th:utext="${account.phone}">01713040400</span>
+                                                                    <span class="profile-ud-value" >{{customer.phone}}</span>
                                                                 </div>
                                                             </div>
                                                             <div class="profile-ud-item">
                                                                 <div class="profile-ud wider">
                                                                     <span class="profile-ud-label">Địa chỉ email</span>
-                                                                    <span class="profile-ud-value" th:utext="${account.email}">info@softnio.com</span>
+                                                                    <span class="profile-ud-value" >{{customer.email}}</span>
                                                                 </div>
                                                             </div>
                                                         </div><!-- .profile-ud-list -->
@@ -76,7 +62,7 @@
                                                             <div class="profile-ud-item">
                                                                 <div class="profile-ud wider">
                                                                     <span class="profile-ud-label">Ngày gia nhập</span>
-                                                                    <span class="profile-ud-value" th:utext="${account.dateregister}">08-16-2018 09:04PM</span>
+                                                                    <span class="profile-ud-value" >{{customer.dateregister | date: 'dd/MM/yyyy'}}</span>
                                                                 </div>
                                                             </div>
                                                             <div class="profile-ud-item">
@@ -94,7 +80,7 @@
                                                             <div class="profile-ud-item">
                                                                 <div class="profile-ud wider">
                                                                     <span class="profile-ud-label">Địa chỉ</span>
-                                                                    <span class="profile-ud-value" th:utext="${account.address}">United State</span>
+                                                                    <span class="profile-ud-value" >{{customer.address}}</span>
                                                                 </div>
                                                             </div>
                                                         </div><!-- .profile-ud-list -->
@@ -108,6 +94,3 @@
                             </div>
                         </div>
                     </div>
-                </div>
-</body>
-</html>

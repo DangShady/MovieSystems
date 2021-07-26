@@ -15,4 +15,8 @@ import com.moon.entity.Account;
 @Repository
 public interface AccountDAO extends JpaRepository<Account, String>{
 
+	
+	@Query("SELECT a FROM Account a ORDER BY a.dateregister DESC")
+	List<Account> findAllSortById();
+
 }

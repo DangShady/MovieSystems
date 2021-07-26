@@ -1,7 +1,7 @@
 
-app.controller("category-ctrl", function($scope,$routeParams,$location,$http){
+app.controller("customer-ctrl", function($scope,$routeParams,$location,$http){
   
-  $scope.items = [];
+  $scope.customers = [];
   $scope.form = {};
   
   
@@ -19,8 +19,9 @@ app.controller("category-ctrl", function($scope,$routeParams,$location,$http){
   }
   
   $scope.initialize = function(){
-    $http.get("/rest/admin/categories").then(res => {
-      $scope.items = res.data;
+    $http.get("/rest/admin/customer").then(res => {
+      $scope.customers = res.data;
+      console.log(res.data);
     });
   }
        

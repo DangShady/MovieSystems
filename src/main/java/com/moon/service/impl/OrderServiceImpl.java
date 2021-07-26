@@ -49,9 +49,9 @@ public class OrderServiceImpl implements OrderService{
 
 
 	@Override
-	public Order findById(int id) {
+	public List<OrderDetail> findById(int id) {
 		// TODO Auto-generated method stub
-		return orderDao.findById(id).get();
+		return orderDao.findByOrderDetail(id);
 	}
 
 
@@ -59,6 +59,13 @@ public class OrderServiceImpl implements OrderService{
 	public List<Order> findByUserName(String username) {
 		// TODO Auto-generated method stub
 		return orderDao.findByUserName(username);
+	}
+
+
+	@Override
+	public List<Order> getAll() {
+		
+		return orderDao.findAllByDate();
 	}
 
 }

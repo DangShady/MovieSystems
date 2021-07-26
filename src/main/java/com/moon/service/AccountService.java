@@ -13,5 +13,11 @@ import com.moon.entity.Account;
 public interface AccountService {
 	
 	Account findById(String username);
+
+	List<Account> findAll();
+
+	Account create(Account account);
+
+	Account getCustomerDetail(String username);
 	
 }
