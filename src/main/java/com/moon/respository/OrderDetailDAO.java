@@ -13,5 +13,13 @@ import com.moon.entity.OrderDetail;
 @Repository
 public interface OrderDetailDAO extends JpaRepository<OrderDetail, Integer>{
 	
+	@Query("SELECT d.product.name,d.product.image,d.product.price,SUM(d.quantity),SUM(d.price*d.quantity)"
+			+ " FROM OrderDetail d"
+			+ " GROUP BY d.product.name,d.product.image,d.product.price ORDER BY SUM(d.quantity) DESC")
+	public Page<Object[]> topProductDashboard(Pageable pageable);
+	
+	@Query("SELECT SUM(d.amount),AVG(d.amount)"
+			+ " FROM Order d WHERE d.status = true")
+	public Object[] revenueByDashboardTotalSales();
 	
 }

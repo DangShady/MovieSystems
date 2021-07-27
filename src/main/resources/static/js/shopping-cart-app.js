@@ -72,7 +72,7 @@ app.controller("shopping-cart-ctrl", function($scope,$http){
         phone : $scope.phone,
         amount: $scope.cart.amount,
         description: "",
-        status: true,
+        status: false,
         get orderDetails(){
           return $scope.cart.items.map(item =>{
             return {

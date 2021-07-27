@@ -5,7 +5,7 @@ app.config(function ($locationProvider,$routeProvider,$qProvider){
   $routeProvider
   .when("/home", {
     templateUrl: "/admin/assets/index.html",
-    controller: "admin-app"
+    controller: "dashboard-ctrl"
   })
   .when("/product", {
     templateUrl: "/admin/assets/product/product.html",

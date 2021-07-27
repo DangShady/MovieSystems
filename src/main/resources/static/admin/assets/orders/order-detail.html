@@ -65,9 +65,18 @@
                                             
                                         </tbody>
                                     </table>
+                                    
                                 </div>
                             </div>
                             <br>
-                            <p>Ghi chú đơn hàng của khách: <strong class="text-primary" >{{details[0].order.description}}</strong></p>
+                            <div class="row">
+                            	<div class="col-mb-9">
+                                   <p>Ghi chú đơn hàng của khách: <strong class="text-primary" >{{details[0].order.description}}</strong></p>
+                            	</div>
+                            	<div class="col-mb-3">
+                                   <button class="btn btn-primary" ng-click="accept()"><em class="icon ni ni-order"></em><span>Xác nhận đơn hàng</span></button>
+                            	</div>
+                            </div>
+                            
                         </div>
                     </div>

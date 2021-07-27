@@ -23,7 +23,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="data">
-                                                            <div class="amount">$74,958.49</div>
+                                                            <div class="amount">abc</div>
                                                             <div class="info"><strong>$7,395.37</strong> in last month</div>
                                                         </div>
                                                         <div class="data">
@@ -135,131 +135,39 @@
                                                 <div class="nk-tb-list mt-n2">
                                                     <div class="nk-tb-item nk-tb-head">
                                                         <div class="nk-tb-col"><span>Order No.</span></div>
-                                                        <div class="nk-tb-col tb-col-sm"><span>Customer</span></div>
-                                                        <div class="nk-tb-col tb-col-md"><span>Date</span></div>
-                                                        <div class="nk-tb-col"><span>Amount</span></div>
-                                                        <div class="nk-tb-col"><span class="d-none d-sm-inline">Status</span></div>
+                                                        <div class="nk-tb-col tb-col-sm"><span>Khách hàng</span></div>
+                                                        <div class="nk-tb-col tb-col-md"><span>Ngày mua</span></div>
+                                                        <div class="nk-tb-col"><span>Tổng tiền</span></div>
+                                                        <div class="nk-tb-col"><span class="d-none d-sm-inline">Trạng thái</span></div>
                                                     </div>
-                                                    <div class="nk-tb-item">
+                                                    <div class="nk-tb-item" ng-repeat="recent in recentOrder.content">
                                                         <div class="nk-tb-col">
-                                                            <span class="tb-lead"><a href="#">#95954</a></span>
+                                                            <span class="tb-lead"><a href="#">#{{recent.id}}</a></span>
                                                         </div>
                                                         <div class="nk-tb-col tb-col-sm">
                                                             <div class="user-card">
                                                                 <div class="user-avatar sm bg-purple-dim">
-                                                                    <span>AB</span>
+                                                                    <span>KH</span>
                                                                 </div>
                                                                 <div class="user-name">
-                                                                    <span class="tb-lead">Abu Bin Ishtiyak</span>
+                                                                    <span class="tb-lead">{{recent.fullname}}</span>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="nk-tb-col tb-col-md">
-                                                            <span class="tb-sub">02/11/2020</span>
+                                                            <span class="tb-sub">{{recent.orderdate | date : 'dd/MM/yyyy'}}</span>
                                                         </div>
                                                         <div class="nk-tb-col">
-                                                            <span class="tb-sub tb-amount">4,596.75 <span>USD</span></span>
+                                                            <span class="tb-sub tb-amount">{{recent.amount | number : 0}} <span>đ</span></span>
                                                         </div>
-                                                        <div class="nk-tb-col">
-                                                            <span class="badge badge-dot badge-dot-xs badge-success">Paid</span>
+                                                        <div class="nk-tb-col" ng-if="recent.status === true">
+                                                            <span class="badge badge-dot badge-dot-xs badge-success">Đã xác nhận</span>
+                                                        </div>
+                                                        <div class="nk-tb-col" ng-if="recent.status === false">
+                                                            <span class="badge badge-dot badge-dot-xs badge-warning">Chưa xác nhận</span>
                                                         </div>
                                                     </div>
-                                                    <div class="nk-tb-item">
-                                                        <div class="nk-tb-col">
-                                                            <span class="tb-lead"><a href="#">#95850</a></span>
-                                                        </div>
-                                                        <div class="nk-tb-col tb-col-sm">
-                                                            <div class="user-card">
-                                                                <div class="user-avatar sm bg-azure-dim">
-                                                                    <span>DE</span>
-                                                                </div>
-                                                                <div class="user-name">
-                                                                    <span class="tb-lead">Desiree Edwards</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="nk-tb-col tb-col-md">
-                                                            <span class="tb-sub">02/02/2020</span>
-                                                        </div>
-                                                        <div class="nk-tb-col">
-                                                            <span class="tb-sub tb-amount">596.75 <span>USD</span></span>
-                                                        </div>
-                                                        <div class="nk-tb-col">
-                                                            <span class="badge badge-dot badge-dot-xs badge-danger">Canceled</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="nk-tb-item">
-                                                        <div class="nk-tb-col">
-                                                            <span class="tb-lead"><a href="#">#95812</a></span>
-                                                        </div>
-                                                        <div class="nk-tb-col tb-col-sm">
-                                                            <div class="user-card">
-                                                                <div class="user-avatar sm bg-warning-dim">
-                                                                    <img src="./images/avatar/b-sm.jpg" alt="">
-                                                                </div>
-                                                                <div class="user-name">
-                                                                    <span class="tb-lead">Blanca Schultz</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="nk-tb-col tb-col-md">
-                                                            <span class="tb-sub">02/01/2020</span>
-                                                        </div>
-                                                        <div class="nk-tb-col">
-                                                            <span class="tb-sub tb-amount">199.99 <span>USD</span></span>
-                                                        </div>
-                                                        <div class="nk-tb-col">
-                                                            <span class="badge badge-dot badge-dot-xs badge-success">Paid</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="nk-tb-item">
-                                                        <div class="nk-tb-col">
-                                                            <span class="tb-lead"><a href="#">#95256</a></span>
-                                                        </div>
-                                                        <div class="nk-tb-col tb-col-sm">
-                                                            <div class="user-card">
-                                                                <div class="user-avatar sm bg-purple-dim">
-                                                                    <span>NL</span>
-                                                                </div>
-                                                                <div class="user-name">
-                                                                    <span class="tb-lead">Naomi Lawrence</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="nk-tb-col tb-col-md">
-                                                            <span class="tb-sub">01/29/2020</span>
-                                                        </div>
-                                                        <div class="nk-tb-col">
-                                                            <span class="tb-sub tb-amount">1099.99 <span>USD</span></span>
-                                                        </div>
-                                                        <div class="nk-tb-col">
-                                                            <span class="badge badge-dot badge-dot-xs badge-success">Paid</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="nk-tb-item">
-                                                        <div class="nk-tb-col">
-                                                            <span class="tb-lead"><a href="#">#95135</a></span>
-                                                        </div>
-                                                        <div class="nk-tb-col tb-col-sm">
-                                                            <div class="user-card">
-                                                                <div class="user-avatar sm bg-success-dim">
-                                                                    <span>CH</span>
-                                                                </div>
-                                                                <div class="user-name">
-                                                                    <span class="tb-lead">Cassandra Hogan</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="nk-tb-col tb-col-md">
-                                                            <span class="tb-sub">01/29/2020</span>
-                                                        </div>
-                                                        <div class="nk-tb-col">
-                                                            <span class="tb-sub tb-amount">1099.99 <span>USD</span></span>
-                                                        </div>
-                                                        <div class="nk-tb-col">
-                                                            <span class="badge badge-dot badge-dot-xs badge-warning">Due</span>
-                                                        </div>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div><!-- .card -->
                                         </div>
@@ -284,71 +192,20 @@
                                                         </div>
                                                     </div>
                                                     <ul class="nk-top-products">
-                                                        <li class="item">
+                                                        <li class="item" ng-repeat="top in topProduct.content">
                                                             <div class="thumb">
-                                                                <img src="./images/product/a.png" alt="">
+                                                                <img src="/images/products/{{top[1]}}" alt="">
                                                             </div>
                                                             <div class="info">
-                                                                <div class="title">Pink Fitness Tracker</div>
-                                                                <div class="price">$99.00</div>
+                                                                <div class="title">{{top[0]}}</div>
+                                                                <div class="price">{{top[2] | number : 0}}đ</div>
                                                             </div>
                                                             <div class="total">
-                                                                <div class="amount">$990.00</div>
-                                                                <div class="count">10 Sold</div>
+                                                                <div class="amount">{{top[4] | number : 0}}đ</div>
+                                                                <div class="count">{{top[3]}} Đã bán</div>
                                                             </div>
                                                         </li>
-                                                        <li class="item">
-                                                            <div class="thumb">
-                                                                <img src="./images/product/b.png" alt="">
-                                                            </div>
-                                                            <div class="info">
-                                                                <div class="title">Purple Smartwatch</div>
-                                                                <div class="price">$99.00</div>
-                                                            </div>
-                                                            <div class="total">
-                                                                <div class="amount">$990.00</div>
-                                                                <div class="count">10 Sold</div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item">
-                                                            <div class="thumb">
-                                                                <img src="./images/product/c.png" alt="">
-                                                            </div>
-                                                            <div class="info">
-                                                                <div class="title">Black Mi Band Smartwatch</div>
-                                                                <div class="price">$99.00</div>
-                                                            </div>
-                                                            <div class="total">
-                                                                <div class="amount">$990.00</div>
-                                                                <div class="count">10 Sold</div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item">
-                                                            <div class="thumb">
-                                                                <img src="./images/product/d.png" alt="">
-                                                            </div>
-                                                            <div class="info">
-                                                                <div class="title">Black Headphones</div>
-                                                                <div class="price">$99.00</div>
-                                                            </div>
-                                                            <div class="total">
-                                                                <div class="amount">$990.00</div>
-                                                                <div class="count">10 Sold</div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item">
-                                                            <div class="thumb">
-                                                                <img src="./images/product/e.png" alt="">
-                                                            </div>
-                                                            <div class="info">
-                                                                <div class="title">iPhone 7 Headphones</div>
-                                                                <div class="price">$99.00</div>
-                                                            </div>
-                                                            <div class="total">
-                                                                <div class="amount">$990.00</div>
-                                                                <div class="count">10 Sold</div>
-                                                            </div>
-                                                        </li>
+                                                        
                                                     </ul>
                                                 </div><!-- .card-inner -->
                                             </div><!-- .card -->

@@ -7,7 +7,7 @@
 <title>Sản phẩm</title>
 </head>
 <body>
-<div class="bg0 m-t-23 p-b-140">
+<div class="bg0 m-t-23 p-b-140" layout:fragment="content">
 		<div class="container">
 			<div th:replace="/site/share/sortProduct"></div>
 			
@@ -17,7 +17,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img th:src="@{'/images/products/'+${product.name}+'/'+${product.image}}" alt="IMG-PRODUCT">
+							<img th:src="@{'/images/products/'+${product.image}}" alt="IMG-PRODUCT">
 
 							<a th:href="@{/product/detail/{id}(id=${product.id})}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
 								Xem chi tiết

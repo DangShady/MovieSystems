@@ -68,4 +68,14 @@ public class OrderServiceImpl implements OrderService{
 		return orderDao.findAllByDate();
 	}
 
+
+	@Override
+	public Order accept(Integer id) {
+		
+		Order order = orderDao.findById(id).get();
+		order.setStatus(true);
+				
+		return orderDao.save(order);
+	}
+
 }

@@ -26,6 +26,8 @@ public interface OrderService {
 
 	List<Order> getAll();
 
+	Order accept(Integer id);
+
 
 
 }
