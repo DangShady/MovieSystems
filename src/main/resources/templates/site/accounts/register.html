@@ -51,7 +51,7 @@
 									</p>
 								</div>
 							</div>
-							<form th:action="@{/mstore/account/register}" th:object="${account}" method="post" class="signin-form">
+							<form th:action="@{/security/register}" th:object="${account}" method="post" class="signin-form">
 								<div class="form-group mb-3">
 									<label class="label" for="name">Tên đăng nhập</label> <input
 										th:field="*{username}" type="text" class="form-control" placeholder="Username"

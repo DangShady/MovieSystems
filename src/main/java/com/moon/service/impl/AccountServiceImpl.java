@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -64,5 +65,22 @@ public class AccountServiceImpl implements AccountService{
 	public Account getCustomerDetail(String username) {
 		
 		return accDao.findById(username).get();
+	}
+
+	@Override
+	public void createUser(@Valid Account account) {
+		
+		account.setActivated(true);
+		account.setDateregister(new Date());
+		
+		accDao.save(account);
+		
+		Role role = roleService.findRoleByName("Users");
+		Authority auth = new Authority();
+		auth.setAccount(account);
+		auth.setRole(role);
+		
+		authDao.save(auth);	
+		
 	}
 }

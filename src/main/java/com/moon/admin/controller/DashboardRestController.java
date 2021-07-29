@@ -1,6 +1,7 @@
 package com.moon.admin.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moon.entity.Order;
+import com.moon.report.ReportTotalSale;
 import com.moon.service.ReportService;
 
 @CrossOrigin("*")
@@ -34,8 +36,26 @@ public class DashboardRestController {
 	}
 	
 	@GetMapping("total")
-	public Object[] getTotal() {
+	public ReportTotalSale getTotal() {
 		
 		return rpService.getTotalDashboard();
+	}
+	
+	@GetMapping("lastmonth")
+	public Object getTotalLastMonth() {
+		
+		return rpService.getTotalLastMonth();
+	}
+	
+	@GetMapping("lastweek")
+	public Object getTotalLastWeek() {
+		
+		return rpService.getTotalLastWeek();
+	}
+	
+	@GetMapping("count")
+	public Map<String,Integer> getCountForShop() {
+		
+		return rpService.getCountForShop();
 	}
 }

@@ -42,37 +42,43 @@
                                 <li class="nk-menu-item">
                                     <a href="#!home" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-dashboard-fill"></em></span>
-                                        <span class="nk-menu-text">Dashboard</span>
+                                        <span class="nk-menu-text">Trang chủ</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
                                     <a href="#!order" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-bag-fill"></em></span>
-                                        <span class="nk-menu-text">Orders</span>
+                                        <span class="nk-menu-text">Đơn hàng</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
                                     <a href="#!product" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-package-fill"></em></span>
-                                        <span class="nk-menu-text">Products</span>
+                                        <span class="nk-menu-text">Sản phẩm</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
                                     <a href="#!customer" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-users-fill"></em></span>
-                                        <span class="nk-menu-text">Customers</span>
+                                        <span class="nk-menu-text">Khách hàng</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
                                     <a href="#!category" class="nk-menu-link">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-users-fill"></em></span>
-                                        <span class="nk-menu-text">Category</span>
+                                        <span class="nk-menu-icon"><em class="icon ni ni-layers-fill"></em></span>
+                                        <span class="nk-menu-text">Loại sản phẩm</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="#!authentication" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-tag-alt-fill"></em></span>
+                                        <span class="nk-menu-text">Cấp quyền</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
                                     <a href="#!setting" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-opt-alt-fill"></em></span>
-                                        <span class="nk-menu-text">Settings</span>
+                                        <span class="nk-menu-text">Cài đặt</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                             </ul><!-- .nk-menu -->
@@ -99,17 +105,17 @@
                                 <em class="icon ni ni-search"></em>
                                 <input type="text" class="form-control border-transparent form-focus-none" placeholder="Search anything">
                             </div><!-- .nk-header-news -->
-                            <div class="nk-header-tools">
+                            <div class="nk-header-tools" ng-controller="dashboard-ctrl">
                                 <ul class="nk-quick-nav">
                                     <li class="dropdown user-dropdown">
-                                        <a href="#" class="dropdown-toggle mr-n1" data-toggle="dropdown">
+                                        <a href="" class="dropdown-toggle mr-n1" data-toggle="dropdown">
                                             <div class="user-toggle">
                                                 <div class="user-avatar sm">
                                                     <em class="icon ni ni-user-alt"></em>
                                                 </div>
                                                 <div class="user-info d-none d-xl-block">
-                                                    <div class="user-status user-status-active">Administator</div>
-                                                    <div class="user-name dropdown-indicator">Abu Bin Ishityak</div>
+                                                    <div class="user-status user-status-active">Quản trị viên</div>
+                                                    <div class="user-name dropdown-indicator">{{adminInLogin.fullname}}</div>
                                                 </div>
                                             </div>
                                         </a>
@@ -117,25 +123,25 @@
                                             <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
                                                 <div class="user-card">
                                                     <div class="user-avatar">
-                                                        <span>AB</span>
+                                                        <span>AD</span>
                                                     </div>
                                                     <div class="user-info">
-                                                        <span class="lead-text">Abu Bin Ishtiyak</span>
-                                                        <span class="sub-text">info@softnio.com</span>
+                                                        <span class="lead-text">{{adminInLogin.fullname}}</span>
+                                                        <span class="sub-text">{{adminInLogin.email}}</span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="dropdown-inner">
                                                 <ul class="link-list">
-                                                    <li><a href="html/ecommerce/user-profile.html"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
-                                                    <li><a href="html/ecommerce/user-profile.html"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
+                                                    <li><a href="#!customer/{{adminInLogin.username}}"><em class="icon ni ni-user-alt"></em><span>Thông tin cá nhân</span></a></li>
+                                                    <li><a href="html/ecommerce/user-profile.html"><em class="icon ni ni-setting-alt"></em><span>Cài đặt tài khoản</span></a></li>
                                                     <li><a href="html/ecommerce/user-profile.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>
                                                     <li><a class="dark-switch" href="#"><em class="icon ni ni-moon"></em><span>Dark Mode</span></a></li>
                                                 </ul>
                                             </div>
                                             <div class="dropdown-inner">
                                                 <ul class="link-list">
-                                                    <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                                    <li><a href="/security/logoff"><em class="icon ni ni-signout"></em><span>Đăng xuất</span></a></li>
                                                 </ul>
                                             </div>
                                         </div>

@@ -62,5 +62,12 @@ public class ProductServiceImpl implements ProductService{
 		proDao.deleteById(id);;
 	}
 
+	@Override
+	public Page<Product> newProducts() {
+		
+		PageRequest page = PageRequest.of(0, 8);
+		return proDao.newProducts(page);
+	}
+
 
 }

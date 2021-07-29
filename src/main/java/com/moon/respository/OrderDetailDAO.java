@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.moon.entity.OrderDetail;
+import com.moon.report.ReportTotalSale;
 
 @Repository
 public interface OrderDetailDAO extends JpaRepository<OrderDetail, Integer>{
@@ -18,8 +19,18 @@ public interface OrderDetailDAO extends JpaRepository<OrderDetail, Integer>{
 			+ " GROUP BY d.product.name,d.product.image,d.product.price ORDER BY SUM(d.quantity) DESC")
 	public Page<Object[]> topProductDashboard(Pageable pageable);
 	
-	@Query("SELECT SUM(d.amount),AVG(d.amount)"
+	@Query("SELECT new com.moon.report.ReportTotalSale(AVG(d.amount),SUM(d.amount))"
 			+ " FROM Order d WHERE d.status = true")
-	public Object[] revenueByDashboardTotalSales();
+	public ReportTotalSale revenueByDashboardTotalSales();
+	
+	@Query("SELECT SUM(d.amount)"
+			+ " FROM Order d"
+			+ " WHERE DATEPART(MONTH,GETDATE()) = DATEPART(MONTH,d.orderdate) AND d.status = true")
+	public Object revenueByDashboardByMonth();
+	
+	@Query("SELECT SUM(d.amount)"
+			+ " FROM Order d"
+			+ " WHERE DATEPART(WEEK,GETDATE()) = DATEPART(WEEK,d.orderdate) AND d.status = true")
+	public Object revenueByDashboardByWeek();
 	
 }

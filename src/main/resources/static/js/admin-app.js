@@ -51,8 +51,17 @@ app.config(function ($locationProvider,$routeProvider,$qProvider){
     templateUrl: "/admin/assets/orders/order-detail.html",
     controller: "order-detail-ctrl"
   })
+  .when("/authentication", {
+    templateUrl: "/admin/assets/authentication.html",
+  })
+  .when("/setting", {
+    templateUrl: "/admin/assets/setting.html",
+  })
   .otherwise({
     redirectTo: "/home"
   })
+  
+  
+  
   
 })

@@ -8,7 +8,7 @@ app.controller("shopping-cart-ctrl", function($scope,$http){
   $http.get(`/rest/accounts/userInLogin`).then(res => {     
           $scope.userInLogin = res.data;
           console.log($scope.userInLogin);
-    });
+  });
   
   
 	$scope.cart = {

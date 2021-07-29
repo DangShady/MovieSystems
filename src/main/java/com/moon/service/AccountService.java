@@ -4,6 +4,8 @@ package com.moon.service;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Service;
 
 import com.moon.entity.Account;
@@ -19,5 +21,7 @@ public interface AccountService {
 	Account create(Account account);
 
 	Account getCustomerDetail(String username);
+
+	void createUser(@Valid Account account);
 	
 }
