@@ -23,5 +23,7 @@ public interface AccountService {
 	Account getCustomerDetail(String username);
 
 	void createUser(@Valid Account account);
+
+	List<Account> getAdministrators();
 	
 }

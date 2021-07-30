@@ -53,6 +53,7 @@ app.config(function ($locationProvider,$routeProvider,$qProvider){
   })
   .when("/authentication", {
     templateUrl: "/admin/assets/authentication.html",
+    controller: "authority-ctrl"
   })
   .when("/setting", {
     templateUrl: "/admin/assets/setting.html",

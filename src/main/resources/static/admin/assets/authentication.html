@@ -42,7 +42,7 @@
                                             </div>
                                             <div class="nk-tb-col tb-col-md"><span>Tên nhân viên</span></div>
                                             <div class="nk-tb-col tb-col-sm"><span></span></div>
-                                            <div class="nk-tb-col tb-col-md"><span>Quyền</span></div>
+                                            <div class="nk-tb-col tb-col-md" ng-repeat="role in roles"><span>{{role.name}}</span></div>
                                             <div class="nk-tb-col tb-col-sm"><span></span></div>
                                             <div class="nk-tb-col tb-col-sm"><span></span></div>
                                             <div class="nk-tb-col tb-col-sm"><span></span></div>
@@ -64,7 +64,7 @@
                                         </div><!-- .nk-tb-item -->
                                         
                                         
-                                        <div class="nk-tb-item">
+                                        <div class="nk-tb-item" ng-repeat="acc in admins">
                                             <div class="nk-tb-col nk-tb-col-check">
                                                 <div class="custom-control custom-control-sm custom-checkbox notext">
                                                     <input type="checkbox" class="custom-control-input" id="uid2">
@@ -72,15 +72,15 @@
                                                 </div>
                                             </div>
                                             <div class="nk-tb-col">
-                                                <span class="tb-lead" ><a href="#"></a>name</span>
+                                                <span class="tb-lead" ><a href="#"></a>{{acc.fullname}}</span>
                                             </div>
                                             <div class="nk-tb-col tb-col-sm">
                                                 <span class="tb-sub"></span>
                                             </div>
-                                            <div class="nk-tb-col tb-col-md">
+                                            <div class="nk-tb-col tb-col-md" ng-repeat="role in roles">
                                                 <div class="custom-control custom-control-sm custom-checkbox">
-												    <input type="checkbox" class="custom-control-input" id="customCheck2">
-												    <label class="custom-control-label" for="customCheck2">Option Label</label>
+												    <input ng-checked="authority_of(acc,role)" ng-click="authority_changed(acc,role)" type="checkbox" style="width: 20px; height: 20px">
+												    <label style="margin-top: 5px;margin-left: 5px">{{role.name}}</label>
 												</div>
                                             </div>
                                             <div class="nk-tb-col">
@@ -101,14 +101,7 @@
                                     <div class="card">
                                         <div class="card-inner">
                                             <div class="nk-block-between-md g-3">
-                                                <div class="g">
-                                                    <dir-pagination-controls
-                                                    	max-size="6"
-                                                    	direction-links="true"
-                                                    	boundary-links="true"
-                                                    >
-                                                    </dir-pagination-controls>
-                                                </div>
+                                                
                                                 <div class="g">
                                                     <div class="pagination-goto d-flex justify-content-center justify-content-md-start gx-3">
                                                         <div>Page</div>

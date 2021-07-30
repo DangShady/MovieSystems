@@ -19,4 +19,8 @@ public interface AccountDAO extends JpaRepository<Account, String>{
 	@Query("SELECT a FROM Account a ORDER BY a.dateregister DESC")
 	List<Account> findAllSortById();
 
+	
+	@Query("SELECT DISTINCT ar.account FROM Authority ar WHERE ar.role.id IN ('ADMIN','GUEST')")
+	List<Account> getAdministrators();
+
 }

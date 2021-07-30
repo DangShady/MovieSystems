@@ -83,4 +83,10 @@ public class AccountServiceImpl implements AccountService{
 		authDao.save(auth);	
 		
 	}
+
+	@Override
+	public List<Account> getAdministrators() {
+		
+		return accDao.getAdministrators();
+	}
 }
