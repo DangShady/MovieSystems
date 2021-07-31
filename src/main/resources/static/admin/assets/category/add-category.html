@@ -11,7 +11,7 @@
                                         </div>
                                     </div><!-- .nk-block-head -->
                                     <div class="nk-block">
-                                    <form  method="post">
+                                    <form  method="post" name="myForm">
                                         <div class="row g-3">
                                         
                                             <div class="col-12">
@@ -27,15 +27,15 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="product-title">Loại sản phẩm</label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" ng-model="cate.name" class="form-control" placeholder="Name" id="name">
-                                                        
+                                                        <input type="text" ng-model="cate.name" name="Name" required="required" class="form-control" placeholder="Name" id="name">
+                                                        <span class="text-danger" ng-show="myForm.Name.$touched && myForm.Name.$error.required">Tên không được để trống</span>
                                                     </div>
                                                     
                                                 </div>
                                             </div>
                                             
                                             <div class="col-12">
-                                                <button class="btn btn-primary" ng-click="create()"><em class="icon ni ni-plus"></em><span>Thêm mới</span></button>
+                                                <button class="btn btn-primary" ng-disabled="myForm.$invalid" ng-click="create()"><em class="icon ni ni-plus"></em><span>Thêm mới</span></button>
                                                 <button class="btn btn-danger" ng-click="reset()"><em class="icon ni ni-plus"></em><span>Làm mới</span></button>
                                             </div>
                                            

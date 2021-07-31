@@ -11,15 +11,15 @@
                                         </div>
                                     </div><!-- .nk-block-head -->
                                     <div class="nk-block">
-                                    <form  enctype="multipart/form-data" method="post">
+                                    <form  enctype="multipart/form-data" method="post" name="myForm">
                                         <div class="row g-3">
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label class="form-label" for="product-title">Tên sản phẩm</label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" class="form-control" ng-model="form.name" id="product-title">
+                                                        <input type="text" class="form-control" ng-model="form.name" name="nameProduct" required="required" id="product-title">
                                                         <input type="text" ng-model="form.id" hidden="hidden">
-                                                        
+                                              			<span class="text-danger" ng-show="myForm.nameProduct.$touched && myForm.nameProduct.$invalid">Tên không được để trống</span>          
                                                     </div>
                                                 </div>
                                             </div>
@@ -28,8 +28,9 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="regular-price">Giá sản phẩm</label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" class="form-control" ng-model="form.price" id="regular-price">
-                                                        
+                                                        <input type="text" class="form-control" ng-model="form.price" min="0" name="priceProduct" required="required" ng-pattern="/^[0-9]{1,5}$/" id="regular-price">
+                                                        <span class="text-danger" ng-show="myForm.priceProduct.$touched && myForm.priceProduct.$error.required">Gía không được để trống</span>
+                                                        <span class="text-danger" ng-show="myForm.priceProduct.$touched && myForm.priceProduct.$error.pattern">Giá phải là số và lớn hơn 0</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -37,8 +38,9 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="sale-price">Số lượng <price></price></label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" class="form-control" ng-model="form.quantity" id="sale-price">
-                                                        
+                                                        <input type="text" class="form-control" ng-model="form.quantity" min="0" name="quantityProduct" required="required" ng-pattern="/^[0-9]{1,5}$/" id="sale-price">
+                                                        <span class="text-danger" ng-show="myForm.quantityProduct.$touched && myForm.quantityProduct.$error.required">Số lượng không được để trống</span>
+                                                        <span class="text-danger" ng-show="myForm.quantityProduct.$touched && myForm.quantityProduct.$error.pattern">Số lượng phải là số và lớn hơn 0</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -48,7 +50,8 @@
                                                     <label class="form-label" for="category">Ngày nhập</label>
                                                     <div class="form-group">
                                                         <div class="">
-                                                             <input type="date" ng-model="form.productdate" class="form-control">
+                                                             <input type="date" ng-model="form.productdate" name="dateProduct" required="required" class="form-control">
+                                                             <span class="text-danger" ng-show="myForm.dateProduct.$touched && myForm.dateProduct.$invalid">Ngày nhập không được để trống</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -73,7 +76,8 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="tags">Mô tả</label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" class="form-control" ng-model="form.description" id="tags">
+                                                        <input type="text" class="form-control" ng-model="form.description" name="desProduct" required="required" id="tags">
+                                                        <span class="text-danger" ng-show="myForm.desProduct.$touched && myForm.desProduct.$invalid">Mô tả sản phẩm không được để trống</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -83,7 +87,7 @@
                                         
                                            
                                             <div class="col-12">
-                                                <button class="btn btn-primary" ng-click="create()"><em class="icon ni ni-plus"></em><span>Thêm mới</span></button>
+                                                <button ng-disabled="myForm.$invalid" class="btn btn-primary" ng-click="create()"><em class="icon ni ni-plus"></em><span>Thêm mới</span></button>
                                                 <button class="btn btn-danger" ng-click="reset()"><em class="icon ni ni-plus"></em><span>Làm mới</span></button>
                                             </div>
                                             

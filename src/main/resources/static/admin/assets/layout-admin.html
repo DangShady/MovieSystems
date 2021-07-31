@@ -19,7 +19,7 @@
 <body class="nk-body bg-lighter npc-general has-sidebar" ng-app="admin-app">
     <div class="nk-app-root">
         <!-- main @s -->
-        <div class="nk-main ">
+        <div class="nk-main " ng-controller="dashboard-ctrl">
             <!-- sidebar @s -->
             <div class="nk-sidebar nk-sidebar-fixed is-light " data-content="sidebarMenu">
                 <div class="nk-sidebar-element nk-sidebar-head">
@@ -69,7 +69,7 @@
                                         <span class="nk-menu-text">Loại sản phẩm</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
-                                <li class="nk-menu-item">
+                                <li class="nk-menu-item" ng-if="authentication() === true">
                                     <a href="#!authentication" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-tag-alt-fill"></em></span>
                                         <span class="nk-menu-text">Cấp quyền</span>
@@ -105,7 +105,7 @@
                                 <em class="icon ni ni-search"></em>
                                 <input type="text" class="form-control border-transparent form-focus-none" placeholder="Search anything">
                             </div><!-- .nk-header-news -->
-                            <div class="nk-header-tools" ng-controller="dashboard-ctrl">
+                            <div class="nk-header-tools" >
                                 <ul class="nk-quick-nav">
                                     <li class="dropdown user-dropdown">
                                         <a href="" class="dropdown-toggle mr-n1" data-toggle="dropdown">

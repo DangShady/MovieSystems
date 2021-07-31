@@ -38,10 +38,16 @@ public class AuthorityServiceImpl implements AuthorityService{
 		return authDao.save(auth);
 	}
 
-	@Override
+	@Override	
 	public void deleteById(Integer id) {
 		
-		authDao.deleteById(id);		
+		authDao.deleteByIdCode(id);		
+	}
+
+	@Override
+	public Authority getAuthotiryByAcc(String username) {
+		
+		return authDao.getAuthorityByAcc(username);
 	}
 
 }

@@ -9,6 +9,8 @@ app.controller("dashboard-ctrl", function($scope,$http){
   $scope.lastweek = {};
   $scope.count = [];
   $scope.adminInLogin = {};
+  $scope.roleByAuth = {};
+  $scope.authen = false;
   
   
   $scope.loadTopProduct = function(){
@@ -74,7 +76,24 @@ app.controller("dashboard-ctrl", function($scope,$http){
     })
   }
   
+  $scope.getAuthByAcc = function(){
+    $http.get(`/rest/authorities/getAuthByAcc`).then(res => {
+      $scope.roleByAuth = res.data;
+      console.log("AuthByAcc",res.data);
+      $scope.authentication = function(){
+		    if($scope.roleByAuth){
+		      return $scope.authen = true;
+		    }
+		    else{
+		      return $scope.authen = false;
+		    }
+		  }
+    })
+  }
   
+  
+  
+  $scope.getAuthByAcc();
   $scope.loadAdminInLogin();
   $scope.loadCountForShop();
   $scope.loadTotalLastWeek();

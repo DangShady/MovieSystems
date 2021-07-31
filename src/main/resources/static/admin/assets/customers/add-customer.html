@@ -10,15 +10,15 @@
                                             </div>
                                         </div>
                                     </div><!-- .nk-block-head -->
-                                    <form method="post">
+                                    <form method="post" name="myForm">
                                     <div class="nk-block">
                                         <div class="row g-3">
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label class="form-label" for="product-title">Tên đăng nhập</label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" ng-model="customer.username" class="form-control" id="product-title">
-                                                        
+                                                        <input type="text" ng-model="customer.username" class="form-control" name="Username" required="required" id="product-title">
+                                                        <span class="text-danger" ng-show="myForm.Username.$touched && myForm.Username.$invalid">Tên đăng nhập không được để trống</span>
                                                         
                                                     </div>
                                                 </div>
@@ -27,8 +27,9 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="product-title">Mật khẩu</label>
                                                     <div class="form-control-wrap">
-                                                        <input type="password" ng-model="customer.password" class="form-control" id="product-title">
-                                                        
+                                                        <input type="password" ng-model="customer.password" class="form-control" name="Password" required="required" id="product-title">
+                                                        <span class="text-danger" ng-show="myForm.Password.$touched && myForm.Password.$required">Mật khẩu không được để trống</span>
+                                                        <span class="text-danger" ng-show="myForm.Password.$touched && myForm.Password.$error.minlength">Mật khẩu ít nhất 6 kí tự</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -36,8 +37,8 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="regular-price">Họ và tên</label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" ng-model="customer.fullname" class="form-control" id="regular-price">
-                                                        
+                                                        <input type="text" ng-model="customer.fullname" class="form-control" name="Fullname" required="required" id="regular-price">
+                                                        <span class="text-danger" ng-show="myForm.Fullname.$touched && myForm.Fullname.$invalid">Họ và tên không được để trống</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -45,8 +46,9 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="sale-price">Email</label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" ng-model="customer.email" class="form-control" id="sale-price">
-                                                        
+                                                        <input type="text" ng-model="customer.email" name="Email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required="required" class="form-control" id="sale-price">
+                                                        <span class="text-danger" ng-show="myForm.Email.$touched && myForm.Email.$error.required">Email không được để trống</span>
+                                                        <span class="text-danger" ng-show="myForm.Email.$touched && myForm.Email.$error.pattern">Email không đúng định dạng</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -54,8 +56,9 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="stock">Số điện thoại</label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" ng-model="customer.phone" class="form-control" id="stock">
-                                                        
+                                                        <input type="text" ng-model="customer.phone" name="Phone" required="required" ng-pattern="/((09|03|07|08|05)+([0-9]{8})\b)/g" class="form-control" id="stock">
+                                                        <span class="text-danger" ng-show="myForm.Phone.$touched && myForm.Phone.$error.required">Số điện thoại không được để trống</span>
+                                                        <span class="text-danger" ng-show="myForm.Phone.$touched && myForm.Phone.$error.pattern">Số điện thoại không đúng định dạng</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -63,14 +66,14 @@
                                                 <div class="form-group">
                                                     <label class="form-label" for="SKU">Địa chỉ</label>
                                                     <div class="form-control-wrap">
-                                                        <input type="text" ng-model="customer.address" class="form-control" id="SKU">
-                                                        
+                                                        <input type="text" ng-model="customer.address" name="Address" required="required" class="form-control" id="SKU">
+                                                        <span class="text-danger" ng-show="myForm.Address.$touched && myForm.Address.$error.required">Địa chỉ không được để trống</span>
                                                     </div>
                                                 </div>
                                             </div>
                                           	
                                             <div class="col-12">
-                                                <button ng-click="create()" class="btn btn-primary"><em class="icon ni ni-plus"></em><span>Thêm mới</span></button>
+                                                <button ng-disabled="myForm.$invalid" ng-click="create()" class="btn btn-primary"><em class="icon ni ni-plus"></em><span>Thêm mới</span></button>
                                             </div>
                                         </div>
                                 </div>

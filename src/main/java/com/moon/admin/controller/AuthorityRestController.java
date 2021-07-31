@@ -3,6 +3,9 @@ package com.moon.admin.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,6 +26,9 @@ import com.moon.service.AuthorityService;
 public class AuthorityRestController {
 
 	@Autowired
+	HttpServletRequest request;
+	
+	@Autowired
 	AuthorityService authService;
 	
 	@GetMapping
@@ -34,13 +40,22 @@ public class AuthorityRestController {
 		return authService.findAll();
 	}
 	
+	@GetMapping("/getAuthByAcc")
+	public Authority getAuthByAcc() {
+		
+		String username = request.getRemoteUser();
+		
+		return authService.getAuthotiryByAcc(username);
+	}
+	
 	@PostMapping
 	public Authority post(@RequestBody Authority auth) {
 		
 		return authService.create(auth);
 	}
 	
-	@DeleteMapping("/{id}")
+	
+	@DeleteMapping("/delete/{id}")
 	public void delete(@PathVariable("id") Integer id) {		
 		 authService.deleteById(id);
 	}
